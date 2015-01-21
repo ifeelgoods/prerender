@@ -11,27 +11,27 @@ var server = prerender({
 server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
 
-if(process.env.ENV_VARIABLE === 'ENABLE_BASIC_AUTH'){
+if(process.env.ENABLE_BASIC_AUTH === 'true'){
     server.use(prerender.basicAuth());
 }
 
-if(process.env.ENV_VARIABLE === 'ENABLE_WHITELIST'){
+if(process.env.ENABLE_WHITELIST === 'true'){
     server.use(prerender.whitelist());
 }
 
-if(process.env.ENV_VARIABLE === 'ENABLE_BLACKLIST'){
+if(process.env.ENABLE_BLACKLIST === 'true'){
     server.use(prerender.blacklist());
 }
 
-if(process.env.ENV_VARIABLE === 'ENABLE_LOGGER'){
+if(process.env.ENABLE_LOGGER === 'true'){
     server.use(prerender.logger());
 }
 
-if(process.env.ENV_VARIABLE === 'ENABLE_INMEMORYHTMLCACHE'){
+if(process.env.ENABLE_INMEMORYHTMLCACHE === 'true'){
     server.use(prerender.inMemoryHtmlCache());
 }
 
-if(process.env.ENV_VARIABLE === 'ENABLE_S3HTMLCACHE'){
+if(process.env.ENABLE_S3HTMLCACHE === 'true'){
     server.use(prerender.s3HtmlCache());
 }
 
