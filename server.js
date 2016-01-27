@@ -8,14 +8,31 @@ var server = prerender({
     messageTimeout: process.env.PHANTOM_CLUSTER_MESSAGE_TIMEOUT
 });
 
-
-// server.use(prerender.basicAuth());
-// server.use(prerender.whitelist());
-server.use(prerender.blacklist());
-// server.use(prerender.logger());
 server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
-// server.use(prerender.inMemoryHtmlCache());
-// server.use(prerender.s3HtmlCache());
+
+if(process.env.ENABLE_BASIC_AUTH === 'true'){
+    server.use(prerender.basicAuth());
+}
+
+if(process.env.ENABLE_WHITELIST === 'true'){
+    server.use(prerender.whitelist());
+}
+
+if(process.env.ENABLE_BLACKLIST === 'true'){
+    server.use(prerender.blacklist());
+}
+
+if(process.env.ENABLE_LOGGER === 'true'){
+    server.use(prerender.logger());
+}
+
+if(process.env.ENABLE_INMEMORYHTMLCACHE === 'true'){
+    server.use(prerender.inMemoryHtmlCache());
+}
+
+if(process.env.ENABLE_S3HTMLCACHE === 'true'){
+    server.use(prerender.s3HtmlCache());
+}
 
 server.start();
